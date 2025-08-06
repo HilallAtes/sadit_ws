@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<robot name="sadit" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <xacro:property name="body_color" value="Gazebo/Silver" />
+  <gazebo reference="base_link">
+    <material>${body_color}</material>
+  </gazebo>
+  <gazebo reference="sol_on_teker_1">
+    <material>${body_color}</material>
+  </gazebo>
+  <gazebo reference="sol_arka_teker_1">
+    <material>${body_color}</material>
+  </gazebo>
+  <gazebo reference="sag_on_teker_1">
+    <material>${body_color}</material>
+  </gazebo>
+  <gazebo reference="sag_arka_teker_1">
+    <material>${body_color}</material>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="planar_move_controller" filename="libgazebo_ros_planar_move.so">
+      <command_topic>cmd_vel</command_topic>
+      <odometry_topic>odom</odometry_topic>
+      <odometry_frame>odom</odometry_frame>
+      <odometry_rate>20.0</odometry_rate>
+      <robot_base_frame>base_link</robot_base_frame>
+      <ros>
+        <remapping>cmd_vel:=cmd_vel</remapping>
+        <remapping>odom:=odom</remapping>
+      </ros>
+    </plugin>
+  </gazebo>
+
+</robot>

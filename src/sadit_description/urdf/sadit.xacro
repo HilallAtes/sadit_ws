@@ -1,0 +1,160 @@
+<?xml version="1.0" ?>
+<robot name="sadit" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find sadit_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find sadit_description)/urdf/sadit.trans" />
+<xacro:include filename="$(find sadit_description)/urdf/sadit.gazebo" />
+<xacro:include filename="$(find sadit_description)/urdf/rplidar_s2.xacro"/>
+<xacro:include filename="$(find sadit_description)/urdf/d435_camera.xacro"/>
+<xacro:include filename="$(find sadit_description)/urdf/d435_camera2.xacro"/>
+<xacro:include filename="$(find sadit_description)/urdf/imu.xacro"/>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.30892534596658217 0.24997281793654913 0.40045242739947334" rpy="0 0 0"/>
+    <mass value="96.44485957285353"/>
+    <inertia ixx="15.855337" iyy="18.242476" izz="7.433254" ixy="-0.000637" iyz="-0.000103" ixz="0.243765"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find sadit_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find sadit_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Lidar (RPLidar S2) -->
+<xacro:rplidar_s2 parent="base_link" name="lidar" xyz="0 0.25 0.25" rpy="0 0 3.14159"/>
+<xacro:rplidar_s2_gazebo_plugin name="lidar"/>
+
+<!-- Kamera (D435) -->
+<xacro:realsense_d435 parent="base_link" name="camera" xyz="0 0.35 0.25" rpy="0 0.25 3.14159"/>
+<xacro:d435_gazebo_plugins name="camera"/>
+
+<!-- Kamera (D435) -->
+<xacro:realsense_d435_2 parent="base_link" name="camera2" xyz="-0.8 0.15 0.25" rpy="0 0.416666667 3.14159"/>
+<xacro:d435_gazebo_plugins_2 name="camera2"/>
+
+<!-- IMU Sensor -->
+<xacro:imu_sensor parent="base_link" name="imu" xyz="0 0 0.1" rpy="0 0 0"/>
+
+<link name="sol_on_teker_1">
+  <inertial>
+    <origin xyz="-2.4068959325607153e-10 -0.017481000866814603 2.1836282781961813e-12" rpy="0 0 0"/>
+    <mass value="1.589728723792327"/>
+    <inertia ixx="0.002214" iyy="0.004209" izz="0.002214" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0825 -0.073 0.048" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find sadit_description)/meshes/sol_on_teker_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0825 -0.073 0.048" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find sadit_description)/meshes/sol_on_teker_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="sol_arka_teker_1">
+  <inertial>
+    <origin xyz="-2.4069013448979604e-10 -0.017518999133198453 -2.1866120025748614e-12" rpy="0 0 0"/>
+    <mass value="1.589728723792327"/>
+    <inertia ixx="0.002214" iyy="0.004209" izz="0.002214" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.5415 -0.073 0.048" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find sadit_description)/meshes/sol_arka_teker_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.5415 -0.073 0.048" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find sadit_description)/meshes/sol_arka_teker_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="sag_on_teker_1">
+  <inertial>
+    <origin xyz="-2.4069657378333886e-10 0.017518999133185276 2.183427050272968e-12" rpy="0 0 0"/>
+    <mass value="1.589728723792327"/>
+    <inertia ixx="0.002214" iyy="0.004209" izz="0.002214" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0825 -0.427 0.048" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find sadit_description)/meshes/sag_on_teker_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0825 -0.427 0.048" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find sadit_description)/meshes/sag_on_teker_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="sag_arka_teker_1">
+  <inertial>
+    <origin xyz="-2.406966848056413e-10 0.017518999133194546 2.183642155983989e-12" rpy="0 0 0"/>
+    <mass value="1.589728723792327"/>
+    <inertia ixx="0.002214" iyy="0.004209" izz="0.002214" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.5415 -0.427 0.048" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find sadit_description)/meshes/sag_arka_teker_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.5415 -0.427 0.048" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find sadit_description)/meshes/sag_arka_teker_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="sol_on" type="continuous">
+  <origin xyz="0.0825 0.073 -0.048" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="sol_on_teker_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="sol_arka" type="continuous">
+  <origin xyz="0.5415 0.073 -0.048" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="sol_arka_teker_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="sag_on" type="continuous">
+  <origin xyz="0.0825 0.427 -0.048" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="sag_on_teker_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="sag_arka" type="continuous">
+  <origin xyz="0.5415 0.427 -0.048" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="sag_arka_teker_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+</robot>

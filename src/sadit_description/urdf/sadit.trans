@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<robot name="sadit" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<transmission name="sol_on_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="sol_on">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="sol_on_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="sol_arka_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="sol_arka">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="sol_arka_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="sag_on_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="sag_on">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="sag_on_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="sag_arka_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="sag_arka">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="sag_arka_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+</robot>
