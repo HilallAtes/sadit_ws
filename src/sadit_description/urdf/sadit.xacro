@@ -39,7 +39,7 @@
 <xacro:d435_gazebo_plugins name="camera"/>
 
 <!-- Kamera (D435) -->
-<xacro:realsense_d435_2 parent="base_link" name="camera2" xyz="-0.8 0.15 0.25" rpy="0 0.416666667 3.14159"/>
+<xacro:realsense_d435_2 parent="camera2_mount_link" name="camera2" xyz="0 0 0" rpy="0 0 0"/>
 <xacro:d435_gazebo_plugins_2 name="camera2"/>
 
 <!-- IMU Sensor -->
@@ -129,6 +129,8 @@
   </collision>
 </link>
 
+<link name="camera2_mount_link"/>
+
 <joint name="sol_on" type="continuous">
   <origin xyz="0.0825 0.073 -0.048" rpy="0 0 0"/>
   <parent link="base_link"/>
@@ -155,6 +157,12 @@
   <parent link="base_link"/>
   <child link="sag_arka_teker_1"/>
   <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="camera2_mount_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="camera2_mount_link"/>
+  <origin xyz="-0.02 0.25 0.1" rpy="0 0 3.14159"/>
 </joint>
 
 </robot>

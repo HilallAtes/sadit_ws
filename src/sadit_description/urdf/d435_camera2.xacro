@@ -165,8 +165,8 @@
           </ros>
           <camera_name>${name}_depth</camera_name>
           <frame_name>${name}_depth_optical_frame</frame_name>
-          <image_topic_name>sadit/camera/depth/image_raw</image_topic_name>
-          <camera_info_topic_name>sadit/camera/depth/camera_info</camera_info_topic_name>
+          <image_topic_name>sadit/camera2/depth/image_raw</image_topic_name>
+          <camera_info_topic_name>sadit/camera2/depth/camera_info</camera_info_topic_name>
         </plugin>
       </sensor>
     </gazebo>
@@ -195,9 +195,9 @@
           </ros>
           <camera_name>${name}_points</camera_name>
           <frame_name>${name}_depth_optical_frame</frame_name>
-          <point_cloud_topic_name>sadit/camera/depth/color/points</point_cloud_topic_name>
-          <image_topic_name>sadit/camera/depth/image_rect_raw</image_topic_name>
-          <camera_info_topic_name>sadit/camera/depth/camera_info</camera_info_topic_name>
+          <point_cloud_topic_name>sadit/camera2/depth/color/points</point_cloud_topic_name>
+          <image_topic_name>sadit/camera2/depth/image_rect_raw</image_topic_name>
+          <camera_info_topic_name>sadit/camera2/depth/camera_info</camera_info_topic_name>
           <point_cloud_cutoff>0.1</point_cloud_cutoff>
           <point_cloud_cutoff_max>10.0</point_cloud_cutoff_max>
         </plugin>
