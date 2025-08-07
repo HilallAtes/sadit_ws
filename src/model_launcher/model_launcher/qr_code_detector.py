@@ -32,12 +32,12 @@ class QrCodeDetector(Node):
         try:
             cv_image = self.cv_bridge.imgmsg_to_cv2(msg, 'bgr8')
             
-            decoded_objects = decode(cv_image)
+            # Görüntüyü daha iyi tespit için büyütme (isteğe bağlı)
             zoom_factor = 2.0
             zoomed_image = cv2.resize(cv_image, None, fx=zoom_factor, fy=zoom_factor, interpolation=cv2.INTER_LINEAR)
 
             decoded_objects = decode(zoomed_image)
-                      
+            
             qr_found_msg = Bool()
             qr_found_msg.data = False
             
@@ -45,19 +45,28 @@ class QrCodeDetector(Node):
                 qr_found_msg.data = True
                 
                 for obj in decoded_objects:
-                    # Get bounding box coordinates and draw a rectangle
-                    (x, y, w, h) = obj.rect
+                    # Büyütülmüş görüntüden gelen koordinatları al
+                    (x_zoom, y_zoom, w_zoom, h_zoom) = obj.rect
+                    
+                    # --- DÜZELTME BURADA ---
+                    # Koordinatları zoom faktörüne bölerek orijinal görüntü ölçeğine indirge
+                    x = int(x_zoom / zoom_factor)
+                    y = int(y_zoom / zoom_factor)
+                    w = int(w_zoom / zoom_factor)
+                    h = int(h_zoom / zoom_factor)
+                    
+                    # Dikdörtgeni orijinal görüntü üzerine doğru koordinatlarla çiz
                     cv2.rectangle(cv_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
                     
-                    # Optionally, you can also print the decoded data
+                    # Decode edilen veriyi yazdır
                     data = obj.data.decode('utf-8')
                     self.get_logger().info(f"QR Code Found: {data}")
 
-            # Display the image in a new window
+            # Sonucu göster (orijinal resim ve üzerine çizilmiş doğru dikdörtgen)
             cv2.imshow("QR Code Detection", cv_image)
             cv2.waitKey(1)
             
-            # Publish the boolean status
+            # Boolean durumu yayınla
             self.qr_found_publisher.publish(qr_found_msg)
             
         except Exception as e:
