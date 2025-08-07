@@ -40,7 +40,8 @@ def generate_launch_description():
             ])
         ]),
         launch_arguments={
-           'world': os.path.join(share_dir, 'world', 'sadit.world')
+           'world': os.path.join(share_dir, 'world', 'sadit.world'),
+           'pause': 'true',
         }.items()
     )
 
